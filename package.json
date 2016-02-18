@@ -1,0 +1,20 @@
+{
+  "name": "pro_rubrics",
+  "version": "2.0.0",
+  "description": "Better Than Spreadsheets",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "author": "Chapman",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.15.0",
+    "express": "4.13.4",
+    "supertest": "1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "2.4.5",
+    "supertest": "^1.2.0"
+  }
+}
