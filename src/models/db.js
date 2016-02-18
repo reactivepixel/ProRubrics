@@ -20,7 +20,7 @@ module.exports = function() {
       type: Sequelize.STRING
     },
     description: {
-      type: Sequelize.STRING
+      type: Sequelize.TEXT
     }
   });
 
@@ -96,6 +96,12 @@ module.exports = function() {
 
   return {
     connection: _sequelize,
+    degree: _degree,
+    course: _course,
     rubric: _rubric,
+    gradeOption: _gradeOption,
+    section: _section,
+    assay: _assay,
+    assessment: _assessment
   }
-};
+}();

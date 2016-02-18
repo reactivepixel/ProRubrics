@@ -1,57 +1,31 @@
 module.exports = function (express) {
   var router = express.Router();
 
+  function success(data){
+    console.log('success', data);
+  }
+  function err(data){
+    console.log('error', data);
+  }
+
   router.get('/', function( req, res) {
     res.status(200).json({ msg:'Hello World', healthy: true });
   });
 
-  router.put('/rubric', function(req, res) {
+  router.get('/status', function( req, res) {
+    res.status(200).json({ healthy: true });
+  });
 
-    var Rubric = require('../../models/rubric.js');
+  router.put('/degree', function(req, res) {
+    var Degree = require('../../models/degree.js');
+    Degree.create(req.body,err,success);
+    res.json(req.body);
+  });
 
-    //
-    // var fakeRubricData = {
-    //   title = 'Name Of Rubric',
-    //   // degree_id = 'WDDBSi',
-    //   // degree_group_id = 'WDDBS',
-    //   course_id = 'WDD463-O', // psych of play DEP1013
-    //   gradeOptions = [
-    //     {
-    //       title: 'Exceptional',
-    //       value: 100
-    //     },
-    //     {
-    //       title: 'Competent',
-    //       value: 80
-    //     },
-    //     {
-    //       displayText: 'Acceptable',
-    //       value: 70
-    //     },
-    //     {
-    //       displayText: 'Deficient',
-    //       value: 40
-    //     },
-    //     {
-    //       displayText: 'Negligent',
-    //       value: 0
-    //     }
-    //   ];
-    //   sections = [
-    //     {
-    //       title: 'Section title',
-    //       sectionWeight: .2
-    //       assessmentPoints: [
-    //         {
-    //           title: 'Line Item',
-    //           description: 'Long winded description',
-    //           infoLink: 'https://somelink.com',
-    //           gradeWeight: .1
-    //         }
-    //       ]
-    //     }
-    //   ]
-    // }
+  router.put('/degree/:id', function(req, res) {
+    var Degree = require('../../models/degree.js');
+    req.body.id = req.params.id;
+    Degree.update(req.body,err,success);
     res.json(req.body);
   });
 
