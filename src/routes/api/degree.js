@@ -1,61 +1,57 @@
 module.exports = function (express) {
   var router = express.Router();
-
-  function success(data){
-    console.log('success', data);
-  }
-  function err(data){
-    console.log('error', data);
-  }
-
-  router.get('/', function(req, res) {
-    res.status(200).json({ msg:'Hello World', healthy: true });
-  });
-
-  router.get('/status', function(req, res) {
-    res.status(200).json({ healthy: true });
-  });
+  var Degree = require('../../models/degree.js');
 
   // Read One
   router.get('/degree/:id', function(req, res) {
-    var Degree = require('../../models/degree.js');
     req.body.id = req.params.id;
-    Degree.find(req.body,err,function(data) {
-      res.json(data);
+    Degree.find(req.body,function(err){
+      // Error Encountered
+      res.status(500).json(err);
+    },function(data) {
+      res.status(200).json(data);
     });
   });
 
   // Read All
   router.get('/degree', function(req, res) {
-    var Degree = require('../../models/degree.js');
-    Degree.findAll(err,function(data) {
-      res.json(data);
+    Degree.findAll(function(err){
+      // Error Encountered
+      res.status(500).json(err);
+    },function(data) {
+      res.status(200).json(data);
     });
   });
 
   // Create
   router.put('/degree', function(req, res) {
-    var Degree = require('../../models/degree.js');
-    Degree.create(req.body,err,function(data) {
-      res.json(data);
+    Degree.create(req.body,function(err){
+      // Error Encountered
+      res.status(500).json(err);
+    },function(data) {
+      res.status(200).json(data);
     });
   });
 
   // Update
   router.put('/degree/:id', function(req, res) {
-    var Degree = require('../../models/degree.js');
     req.body.id = req.params.id;
-    Degree.update(req.body,err,function(data) {
-      res.json(data);
+    Degree.update(req.body,function(err){
+      // Error Encountered
+      res.status(500).json(err);
+    },function(data) {
+      res.status(200).json(data);
     });
   });
 
   // Delete One
   router.delete('/degree/:id', function(req, res) {
-    var Degree = require('../../models/degree.js');
     req.body.id = req.params.id;
-    Degree.destroy(req.body,err,function(data) {
-      res.json({success:data});
+    Degree.destroy(req.body,function(err){
+      // Error Encountered
+      res.status(500).json(err);
+    },function(data) {
+      res.status(200).json({success:data});
     });
   });
 
