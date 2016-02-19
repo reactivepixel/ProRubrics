@@ -25,7 +25,7 @@ module.exports = function() {
 
   function _destroy(payload, err, success){
     var cleanData = payload;
-    db.degree.destroy({where:{id:cleanData.id}}).then(success).catch(err);
+    db.degree.destroy({where:{id:cleanData.id}, force: payload.force}).then(success).catch(err);
   }
 
   return {

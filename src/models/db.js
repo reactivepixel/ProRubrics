@@ -1,9 +1,6 @@
 module.exports = function() {
   var Sequelize = require('sequelize');
   var mysql = require('mysql');
-
-  if(!process.env.PORT) dotenv = require('dotenv').load();
-
   var _sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
     host: process.env.DB_HOST,
     dialect: process.env.DB_SCHEMA,
@@ -12,7 +9,8 @@ module.exports = function() {
       max: 5,
       min: 0,
       idle: 10000
-    }
+    },
+    logging: false
   });
 
   var _degree = _sequelize.define('degree', {

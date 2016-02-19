@@ -1,7 +1,7 @@
 var request = require('supertest');
 var faker = require('faker');
 
-describe('Loading Express', function() {
+describe('Degree Routes', function() {
   var server;
   var testDegreeData = {title: faker.company.bs(), description: faker.company.bs()};
   var testDegree;
@@ -67,19 +67,17 @@ describe('Loading Express', function() {
       .expect(200, done);
   });
 
-
   // Degree Destroy
   it('Degree Destroy', function(done){
     request(server)
       .delete('/api/v1/degree/' + testDegree.id.toString())
       .set('Accept', 'application/json')
+      .send({force: true})
       .expect('Content-Type', /json/)
       .expect(function(res){
         if(!res.body.success) throw new Error('Destroy did not correctly work');
       })
       .expect(200, done);
   });
-
-
 
 });
