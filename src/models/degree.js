@@ -14,8 +14,25 @@ module.exports = function() {
     }).catch(err);
   }
 
+  function _find(payload, err, success){
+    var cleanData = payload;
+    db.degree.find({where:{id:cleanData.id}}).then(success).catch(err);
+  }
+
+  function _findAll(err, success){
+    db.degree.findAll().then(success).catch(err);
+  }
+
+  function _del(payload, err, success){
+    var cleanData = payload;
+    db.degree.destroy({where:{id:cleanData.id}}).then(success).catch(err);
+  }
+
   return {
     create: _create,
-    update: _update
+    update: _update,
+    find: _find,
+    findAll: _findAll,
+    del: _del,
   }
 }();
