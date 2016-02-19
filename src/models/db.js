@@ -22,7 +22,9 @@ module.exports = function() {
     description: {
       type: Sequelize.TEXT
     }
-  });
+  },
+  // Disable Deletions
+  { paranoid: true});
 
   var _course = _sequelize.define('course', {
     title: {
@@ -31,13 +33,17 @@ module.exports = function() {
     course_code: {
       type: Sequelize.STRING
     }
-  });
+  },
+  // Disable Deletions
+  { paranoid: true});
 
   var _rubric = _sequelize.define('rubric', {
     title: {
       type: Sequelize.STRING
     }
-  });
+  },
+  // Disable Deletions
+  { paranoid: true});
 
   var _gradeOption = _sequelize.define('grade_option', {
     title: {
@@ -46,7 +52,9 @@ module.exports = function() {
     value: {
       type: Sequelize.STRING
     }
-  });
+  },
+  // Disable Deletions
+  { paranoid: true});
 
   var _section = _sequelize.define('section', {
     title: {
@@ -55,7 +63,9 @@ module.exports = function() {
     section_weight: {
       type: Sequelize.INTEGER
     }
-  });
+  },
+  // Disable Deletions
+  { paranoid: true});
 
   var _assay = _sequelize.define('assay', {
     title: {
@@ -70,7 +80,9 @@ module.exports = function() {
     grade_weight: {
       type: Sequelize.INTEGER
     }
-  });
+  },
+  // Disable Deletions
+  { paranoid: true});
 
   var _assessment = _sequelize.define('assessment', {
     title: {
@@ -82,7 +94,9 @@ module.exports = function() {
     score: {
       type: Sequelize.INTEGER
     }
-  });
+  },
+  // Disable Deletions
+  { paranoid: true});
 
   _degree.hasMany(_course, {foreignKey: 'degree_id'});
   _course.hasMany(_rubric, {foreignKey: 'course_id'});
