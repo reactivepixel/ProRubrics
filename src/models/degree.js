@@ -23,7 +23,7 @@ module.exports = function() {
     db.degree.findAll().then(success).catch(err);
   }
 
-  function _del(payload, err, success){
+  function _destroy(payload, err, success){
     var cleanData = payload;
     db.degree.destroy({where:{id:cleanData.id}}).then(success).catch(err);
   }
@@ -33,6 +33,6 @@ module.exports = function() {
     update: _update,
     find: _find,
     findAll: _findAll,
-    del: _del,
+    destroy: _destroy,
   }
 }();
